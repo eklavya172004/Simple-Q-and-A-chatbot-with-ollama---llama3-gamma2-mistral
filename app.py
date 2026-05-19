@@ -1,5 +1,4 @@
 import streamlit as st
-import openai
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
@@ -24,7 +23,6 @@ prompt=ChatPromptTemplate.from_messages(
 )
 
 def generate_response(question,api_key,llm,temperature,max_tokens):
-    openai.api_key=api_key
     llm=ChatOpenAI(model=llm, api_key=api_key, temperature=temperature, max_tokens=max_tokens)
     output_parser=StrOutputParser()
     chain=prompt|llm|output_parser
